@@ -1,0 +1,6 @@
+(library
+ (name ocaml_fp_principles)
+ (inline_tests)
+ (modules adt pattern_matching)
+ (preprocess
+  (pps ppx_inline_test)))

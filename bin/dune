@@ -1,0 +1,4 @@
+(executable
+ (public_name ocaml_fp_principles)
+ (name main)
+ (libraries ocaml_fp_principles))
