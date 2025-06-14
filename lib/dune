@@ -1,6 +1,6 @@
 (library
  (name ocaml_fp_principles)
  (inline_tests)
- (modules adt pattern_matching hof closures immutability)
+ (modules adt pattern_matching hof closures immutability totality)
  (preprocess
   (pps ppx_inline_test)))
