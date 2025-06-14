@@ -9,6 +9,7 @@
   immutability
   totality
   streams
-  lazy_streams)
+  lazy_streams
+  stream_fusion)
  (preprocess
   (pps ppx_inline_test)))
