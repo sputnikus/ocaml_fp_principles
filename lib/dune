@@ -1,6 +1,14 @@
 (library
  (name ocaml_fp_principles)
  (inline_tests)
- (modules adt pattern_matching hof closures immutability totality)
+ (modules
+  adt
+  pattern_matching
+  hof
+  closures
+  immutability
+  totality
+  streams
+  lazy_streams)
  (preprocess
   (pps ppx_inline_test)))
