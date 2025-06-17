@@ -10,6 +10,8 @@
   totality
   streams
   lazy_streams
-  stream_fusion)
+  stream_fusion
+  deforestation
+  functor)
  (preprocess
   (pps ppx_inline_test)))
