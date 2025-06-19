@@ -12,6 +12,7 @@
   lazy_streams
   stream_fusion
   deforestation
-  functor)
+  functor
+  applicative)
  (preprocess
   (pps ppx_inline_test)))
