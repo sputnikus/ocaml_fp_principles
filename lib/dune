@@ -13,6 +13,7 @@
   stream_fusion
   deforestation
   functor
-  applicative)
+  applicative
+  monad)
  (preprocess
   (pps ppx_inline_test)))
