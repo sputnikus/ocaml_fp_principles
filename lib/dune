@@ -16,7 +16,8 @@
   applicative
   monad
   parser_combinator
+  applicative_validation
   )
  (libraries str)
  (preprocess
-  (pps ppx_inline_test)))
+  (pps ppx_jane)))
