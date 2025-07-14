@@ -1,7 +1,10 @@
+open Sexplib.Std
+open Ppx_compare_lib.Builtin
+
 (* Applicative validation enables collecting multiple independent errors, rather
 than failing at the first. Unlike monads (which short-circuit on the first
 error), applicative validation accumulates all errors by combining them. *)
-type ('err, 'a) vresult = Ok of 'a | Error of 'err
+type ('err, 'a) vresult = Ok of 'a | Error of 'err [@@deriving sexp, compare]
 
 (* Inject value into vresult *)
 let vreturn x = Ok x
@@ -34,20 +37,22 @@ let%test "both results fail means all errors get reported" =
   let y = Error [ "error2" ] in
   vapply x y = Error [ "error1"; "error2" ]
 
-let%test "collect error from the chain of validations" =
+let%test_unit "collect error from the chain of validations" =
   let validate_positive n = if n > 0 then Ok n else Error [ "not positive" ] in
 
   let validate_nonempty s =
     if s <> "" then Ok s else Error [ "empty string" ]
   in
-  vpair (validate_positive 0) (validate_nonempty "")
-  = Error [ "not positive"; "empty string" ]
+  [%test_eq: (string list, int * string) vresult]
+    (vpair (validate_positive 0) (validate_nonempty ""))
+    (Error [ "not positive"; "empty string" ])
 
-let%test "succeed in the chain of validations" =
+let%test_unit "succeed in the chain of validations" =
   let validate_positive n = if n > 0 then Ok n else Error [ "not positive" ] in
 
   let validate_nonempty s =
     if s <> "" then Ok s else Error [ "empty string" ]
   in
-
-  vpair (validate_positive 42) (validate_nonempty "foo") = Ok (42, "foo")
+  [%test_eq: (string list, int * string) vresult]
+    (vpair (validate_positive 42) (validate_nonempty "bar"))
+    (Ok (42, "bar"))

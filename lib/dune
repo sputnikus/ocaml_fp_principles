@@ -17,6 +17,7 @@
   monad
   parser_combinator
   applicative_validation
+  semigroup
   )
  (libraries str)
  (preprocess
